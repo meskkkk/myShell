@@ -123,3 +123,50 @@ myShell> exit
 - The shell does not support multi-pipe chains (`cmd1 | cmd2 | cmd3`)
 - Redirection and pipes cannot be combined in a single command
 - History is stored in memory only and is lost when the shell exits
+
+---
+
+### builtin.c - Built-in Commands 
+
+- **cd** - Changes directory. Works with `~`, `..`, absolute paths, and relative paths. Shows error if directory doesn't exist.
+- **pwd** - Prints the current working directory.
+- **exit** - Exits the shell with a goodbye message.
+- **history** - Shows all commands typed this session with line numbers.
+
+**History features:**
+- Stores up to 100 commands
+- Won't store the same command twice in a row
+- Old commands get removed automatically when full
+
+**Example:**
+```bash
+myShell> pwd
+/home/user/project
+
+myShell> cd /tmp
+myShell> pwd
+/tmp
+
+myShell> cd ~
+myShell> pwd
+/home/user
+
+myShell> ls
+myShell> history
+
+Command History:
+----------------
+   1  pwd
+   2  cd /tmp
+   3  pwd
+   4  cd ~
+   5  pwd
+   6  ls
+   7  history
+
+myShell> exit
+Exiting myShell. Goodbye!
+```
+---
+
+
