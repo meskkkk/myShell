@@ -123,3 +123,43 @@ myShell> exit
 - The shell does not support multi-pipe chains (`cmd1 | cmd2 | cmd3`)
 - Redirection and pipes cannot be combined in a single command
 - History is stored in memory only and is lost when the shell exits
+
+---
+
+##process.c — Process Execution & Background Jobs
+
+The module responsible for executing external commands by creating and managing processes. It receives structured input from the parser and interacts directly with the operating system using system calls.
+
+Responsibilities:
+	•	Process creation — Uses fork() to create a child process for each command, ensuring the shell continues running independently
+	•	Command execution — Uses execvp() to replace the child process with the requested program using args[]
+	•	Execution modes:
+	◦	Foreground — The parent process waits for the child using waitpid()
+	◦	Background (&) — The shell does not wait and immediately prints the process ID (PID)
+	•	Process coordination — Detects if redirection is required and delegates execution to the redirection handler
+	•	Error handling — Handles failures in fork() and execvp(), and prints clear error messages if a command is invalid
+
+Usage Examples
+
+# Basic execution
+myShell> ls
+main.c  parser.c  process.c  shell.h
+
+# Foreground execution (shell waits)
+myShell> sleep 3
+
+# Background execution
+myShell> sleep 5 &
+[3928]
+myShell>
+
+# Invalid command
+myShell> abc
+myShell: abc: command not found
+
+Notes
+
+	•	Each external command runs in a separate child process
+	•	The parent process only waits in foreground mode
+	•	Background processes allow the shell to remain responsive
+	•	Works seamlessly with parser output and integrates with redirection and pipe modules
