@@ -130,7 +130,7 @@ myShell> exit
 
 The module responsible for executing external commands by creating and managing processes. It receives structured input from the parser and interacts directly with the operating system using system calls.
 
-Responsibilities:
+**Responsibilities:**
 	•	Process creation — Uses fork() to create a child process for each command, ensuring the shell continues running independently
 	•	Command execution — Uses execvp() to replace the child process with the requested program using args[]
 	•	Execution modes:
@@ -139,7 +139,7 @@ Responsibilities:
 	•	Process coordination — Detects if redirection is required and delegates execution to the redirection handler
 	•	Error handling — Handles failures in fork() and execvp(), and prints clear error messages if a command is invalid
 
-Usage Examples
+#Usage Examples
 
 # Basic execution
 myShell> ls
@@ -163,3 +163,47 @@ Notes
 	•	The parent process only waits in foreground mode
 	•	Background processes allow the shell to remain responsive
 	•	Works seamlessly with parser output and integrates with redirection and pipe modules
+---
+### builtin.c - Built-in Commands 
+
+- **cd** - Changes directory. Works with `~`, `..`, absolute paths, and relative paths. Shows error if directory doesn't exist.
+- **pwd** - Prints the current working directory.
+- **exit** - Exits the shell with a goodbye message.
+- **history** - Shows all commands typed this session with line numbers.
+
+**History features:**
+- Stores up to 100 commands
+- Won't store the same command twice in a row
+- Old commands get removed automatically when full
+
+**Example:**
+```bash
+myShell> pwd
+/home/user/project
+
+myShell> cd /tmp
+myShell> pwd
+/tmp
+
+myShell> cd ~
+myShell> pwd
+/home/user
+
+myShell> ls
+myShell> history
+
+Command History:
+----------------
+   1  pwd
+   2  cd /tmp
+   3  pwd
+   4  cd ~
+   5  pwd
+   6  ls
+   7  history
+
+myShell> exit
+Exiting myShell. Goodbye!
+```
+---
+
