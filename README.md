@@ -1,4 +1,4 @@
-# nutshell
+# myShell
 
 A lightweight command-line shell built in C, developed as a final project for the
 Operating Systems course at the Faculty of Computers and Data Science, Alexandria University.
