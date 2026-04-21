@@ -1,4 +1,3 @@
-```markdown
 # nutshell
 
 A lightweight command-line shell built in C, developed as a final project for the
