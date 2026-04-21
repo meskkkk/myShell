@@ -99,7 +99,21 @@ Implements commands handled directly by the shell without forking.
 ---
 
 ### `io_signals.c` — Redirection, Pipes & Signal Handling
-Manages I/O redirection, pipes, and signal behavior.
+Manages I/O redirection, pipes between commands, and signal behavior for the shell process.
+
+- **Signal setup** — Ignores `SIGINT` (`Ctrl+C`) in the parent shell; child processes restore default signal handling so they can be interrupted normally
+- **Input redirection** — Opens the source file with `O_RDONLY` and replaces `stdin` using `dup2()`
+- **Output redirection** — Opens or creates the target file with `O_WRONLY | O_CREAT | O_TRUNC` and replaces `stdout` using `dup2()`
+- **Pipe execution** — Tokenizes the input on `|`, forks one child per command, and wires them together using `pipe()` and `dup2()`; the parent closes pipe ends incrementally and waits for all children to finish
+- **Redirection within pipes** — If a piped command contains `<` or `>`, redirection is applied inside the child before `execvp()`
+
+**Functions:**
+
+| Function | Description |
+|----------|-------------|
+| `setup_signals()` | Configures `SIGINT` to be ignored by the parent shell |
+| `execute_with_redirection(Command *cmd)` | Applies input/output redirection for a command |
+| `execute_pipe(char *input)` | Parses, forks, and executes a pipeline of commands |
 
 ---
 
