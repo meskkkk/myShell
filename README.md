@@ -9,7 +9,7 @@ Operating Systems course at the Faculty of Computers and Data Science, Alexandri
 
 | Name | ID | Contribution |
 |------|----|--------------|
-| Mesk Khaled | 23011537 | `main.c`, `shell.h`, `Makefile`, integration |
+| Mesk Khaled | 23011537 | `main.c`, `shell.h`, `Makefile` |
 | Basmala Moataz | 23012111 | `parser.c` |
 | Shahd Fawzy | 23012087 | `process.c` |
 | Adham Ashraf | 23011220 | `builtin.c` |
@@ -45,7 +45,7 @@ make clean  # Remove build files
 ## Project Structure
 
 ```
-TEAMXX/
+SP08/
 ├── main.c          # Core shell loop & integration
 ├── parser.c        # Command parsing & tokenization
 ├── process.c       # Process execution & background jobs
