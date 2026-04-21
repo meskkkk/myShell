@@ -126,7 +126,7 @@ myShell> exit
 
 ---
 
-##process.c — Process Execution & Background Jobs
+## process.c — Process Execution & Background Jobs
 
 The module responsible for executing external commands by creating and managing processes. It receives structured input from the parser and interacts directly with the operating system using system calls.
 
