@@ -19,7 +19,7 @@ void execute_command(Command *cmd) {
         }
 
         if (cmd->input_file != NULL || cmd->output_file != NULL) {
-            setup_redirection(cmd);
+            execute_with_redirection(cmd);
         }
 
         if (execvp(cmd->args[0], cmd->args) == -1) {
