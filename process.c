@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <signal.h>
 
 void execute_command(Command *cmd) {
     if (cmd == NULL || cmd->arg_count == 0) {
@@ -13,6 +14,10 @@ void execute_command(Command *cmd) {
     }
 
     if (pid == 0) {
+        if (!cmd->is_background) {
+            signal(SIGINT, SIG_DFL);
+        }
+
         if (cmd->input_file != NULL || cmd->output_file != NULL) {
             setup_redirection(cmd);
         }
