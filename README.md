@@ -9,7 +9,7 @@ Operating Systems course at the Faculty of Computers and Data Science, Alexandri
 
 | Name | ID | Contribution |
 |------|----|--------------|
-| Mesk Khaled | 23011537 | `main.c`, `shell.h`, `Makefile` |
+| Mesk Khaled | 23011537 | `myShell.c`, `shell.h`, `Makefile` |
 | Basmala Moataz | 23012111 | `parser.c` |
 | Shahd Fawzy | 23012087 | `process.c` |
 | Adham Ashraf | 23011220 | `builtin.c` |
@@ -46,7 +46,7 @@ make clean  # Remove build files
 
 ```
 SP08/
-├── main.c          # Core shell loop & integration
+├── myShell.c          # Core shell loop & integration
 ├── parser.c        # Command parsing & tokenization
 ├── process.c       # Process execution & background jobs
 ├── builtin.c       # Built-in commands & history
@@ -60,7 +60,7 @@ SP08/
 
 ## Module Breakdown
 
-### `main.c` — Core Shell Loop
+### `myShell.c` — Core Shell Loop
 Entry point of the shell. Displays the `myShell>` prompt, reads user input
 in a loop, and coordinates calls to the parser and execution modules.
 Handles `Ctrl+D` (EOF) for graceful exit.

@@ -1,7 +1,7 @@
 CC     = gcc
 CFLAGS = -Wall -Wextra -g
 TARGET = myShell
-SRCS   = main.c parser.c process.c builtin.c io_signals.c
+SRCS = myShell.c parser.c process.c builtin.c io_signals.c
 OBJS   = $(SRCS:.c=.o)
 
 all: $(TARGET)
